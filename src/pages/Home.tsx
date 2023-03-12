@@ -5,14 +5,25 @@ import { SkeletonLoader } from '../feature/PizzaBlock/skeletonLoader';
 import PizzaBlock from '../feature/PizzaBlock/PizzaBlock';
 import { Pagination } from '../common/Pagination/Pagination';
 import { SearchContext } from '../App';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { setCategoryId } from '../redux/filterSclice';
 
 export const Home = () => {
+  const dispatch = useDispatch();
+  const categoryId = useSelector<RootState>((state) => state.filter.categoryId);
+
   const [items, setItems] = useState<Array<any>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [categoryId, setCategoryId] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [sortType, setSortType] = useState<number>(0);
   const { searchValue } = useContext(SearchContext);
+
+  const onClickCategory = (id: number) => {
+    console.log(id);
+    dispatch(setCategoryId(id));
+  };
+
   useEffect(() => {
     setIsLoading(true);
     const search = searchValue ? `search=${searchValue}` : '';
@@ -39,7 +50,7 @@ export const Home = () => {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories />
+        <Categories value={categoryId} onChangeCategory={onClickCategory} />
         <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
