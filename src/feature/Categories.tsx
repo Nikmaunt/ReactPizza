@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export const Categories = ({ categoryId, onChangeCategory }: any) => {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-
+  console.log(categoryId, 'Categories');
   return (
     <div className="categories">
       <ul>
@@ -10,7 +10,7 @@ export const Categories = ({ categoryId, onChangeCategory }: any) => {
           <li
             key={index}
             onClick={() => onChangeCategory(index)}
-            className={categoryId === index ? 'active' : ''}>
+            className={1 === index ? 'active' : ''}>
             {el}
             <>{console.log(categoryId === index)}</>
           </li>

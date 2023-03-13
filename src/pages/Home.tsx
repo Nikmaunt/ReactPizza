@@ -12,7 +12,7 @@ import { setCategoryId } from '../redux/filterSclice';
 export const Home = () => {
   const dispatch = useDispatch();
   const categoryId = useSelector<RootState>((state) => state.filter.categoryId);
-
+  console.log(categoryId, 'categoryId');
   const [items, setItems] = useState<Array<any>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -20,7 +20,7 @@ export const Home = () => {
   const { searchValue } = useContext(SearchContext);
 
   const onClickCategory = (id: number) => {
-    console.log(id);
+    console.log(id, 'setCategoryId');
     dispatch(setCategoryId(id));
   };
 
