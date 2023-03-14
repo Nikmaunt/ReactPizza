@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import style from './Pagination.module.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
-export const Pagination = ({ onChangePage }: any) => {
+export const Pagination = ({ onChangePage, currentPage }: any) => {
   return (
     <ReactPaginate
       className={style.root}
@@ -12,6 +14,7 @@ export const Pagination = ({ onChangePage }: any) => {
       pageRangeDisplayed={4}
       pageCount={3}
       previousLabel="<"
+      forcePage={currentPage - 1}
       renderOnZeroPageCount={null || undefined}
     />
   );

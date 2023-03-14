@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 
-export const Categories = ({ categoryId, onChangeCategory }: any) => {
+type CategoriesProps = {
+  categoryId?: any;
+  onChangeCategory: (id: number) => void;
+};
+
+export const Categories: React.FC<CategoriesProps> = ({ categoryId, onChangeCategory }: any) => {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-  console.log(categoryId, 'Categories');
+
   return (
     <div className="categories">
       <ul>
@@ -10,9 +15,8 @@ export const Categories = ({ categoryId, onChangeCategory }: any) => {
           <li
             key={index}
             onClick={() => onChangeCategory(index)}
-            className={1 === index ? 'active' : ''}>
+            className={categoryId === index ? 'active' : ''}>
             {el}
-            <>{console.log(categoryId === index)}</>
           </li>
         ))}
       </ul>
