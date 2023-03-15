@@ -3,21 +3,23 @@ import styles from './Search.module.scss';
 import debounce from 'lodash.debounce';
 import searchIcon from '../../assets/img/search_zoom_icon.svg';
 import deleteIcon from '../../assets/img/delete_icon.svg';
-import { SearchContext } from '../../App';
+import { useDispatch } from 'react-redux';
+import { setSearchValue } from '../../redux/filterSlice';
 
 export const Search = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState('');
-  const { setSearchValue } = useContext(SearchContext);
   const inputRef = useRef<any>();
 
   const onClickClear = () => {
-    setSearchValue('');
+    dispatch(setSearchValue(''));
     setValue('');
     inputRef.current.focus();
   };
   const updateSearchValue = useCallback(
     debounce((str: string) => {
       setSearchValue(str);
+      dispatch(setSearchValue(str));
     }, 350),
     [],
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { addProduct } from '../../redux/cartSclice';
+import { addProduct, cartItemSelector } from '../../redux/cartSlice';
 type PizzaBlockPropsType = {
   id: string;
   title: string;
@@ -13,7 +13,7 @@ type PizzaBlockPropsType = {
 const PizzaBlock = ({ id, title, price, imageUrl, sizes, types }: PizzaBlockPropsType) => {
   const nameTypes = ['thin', 'traditional'];
   // @ts-ignore
-  const cartItem = useSelector<RootState>((state) => state.cart.items.find((el) => el.id === id));
+  const cartItem = useSelector<RootState>(cartItemSelector(id));
   const [activeType, setActiveType] = useState<number>(0);
   const [activeSize, setActiveSize] = useState<number>(0);
   const dispatch = useDispatch();
