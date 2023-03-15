@@ -29,7 +29,7 @@ const PizzaBlock = ({ id, title, price, imageUrl, sizes, types }: PizzaBlockProp
       price,
       imageUrl,
       type: nameTypes[activeType],
-      size: activeSize,
+      size: sizes[activeSize],
       count: 0,
     };
     dispatch(addProduct(item));

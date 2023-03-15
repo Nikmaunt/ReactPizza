@@ -15,12 +15,6 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // addProduct: (state, action: PayloadAction<any>) => {
-    //   // @ts-ignore
-    //   state.items.push(action.payload);
-    //
-    //   state.totalPrice = state.items.reduce((sum: any, el: any) => el.price + sum, 0);
-    // },
     addProduct: (state, action: PayloadAction<any>) => {
       const findItem = state.items.find((el: any) => el.id === action.payload.id);
       if (findItem) {
@@ -31,19 +25,27 @@ export const cartSlice = createSlice({
           count: 1,
         });
       }
-      state.totalPrice = state.items.reduce((sum: any, el: any) => el.price + sum, 0);
+      state.totalPrice = state.items.reduce((sum: any, el: any) => el.price * el.count + sum, 0);
+    },
+    minusItem: (state, action: PayloadAction<any>) => {
+      const findItem = state.items.find((el: any) => el.id === action.payload);
+      if (findItem) {
+        findItem.count--;
+        state.totalPrice -= findItem.price;
+      }
     },
     removeItem: (state, action: PayloadAction<any>) => {
       // @ts-ignore
       state.items = state.items.filter((el) => el.id !== action.payload);
     },
-    clearItem: (state) => {
+    clearItems: (state) => {
       state.items = [];
+      state.totalPrice = 0;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addProduct, removeItem, clearItem } = cartSlice.actions;
+export const { addProduct, removeItem, clearItems, minusItem } = cartSlice.actions;
 
 export default cartSlice.reducer;
