@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const FullPizza = () => {
   const { id } = useParams();
-  const [pizza, setPizza] = useState<any>([]);
+  const [pizza, setPizza] = useState<{ imageUrl: string; title: string; price: number }>();
   useEffect(() => {
     axios.get(`https://6409e587d16b1f3ed6e069fe.mockapi.io/items/${id}`).then((res) => {
       setPizza(res.data);

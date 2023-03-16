@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { LegacyRef, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { setSort, SortType } from '../redux/filterSlice';
@@ -22,10 +22,10 @@ export const sortList: SortItem[] = [
 ];
 export const Sort: React.FC<SortPopupProps> = ({ value }) => {
   const dispatch = useDispatch();
-  const sortRef = useRef<any>();
+  const sortRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState<boolean>(false);
 
-  const onClickListItem = (obj: any) => {
+  const onClickListItem = (obj: SortItem) => {
     dispatch(setSort(obj));
     setOpen(false);
   };

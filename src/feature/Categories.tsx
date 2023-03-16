@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 type CategoriesProps = {
-  categoryId?: any;
+  categoryId: number;
   onChangeCategory: (id: number) => void;
 };
 
-export const Categories: React.FC<CategoriesProps> = ({ categoryId, onChangeCategory }: any) => {
+export const Categories: React.FC<CategoriesProps> = ({ categoryId, onChangeCategory }) => {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
   return (
