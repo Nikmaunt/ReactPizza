@@ -6,10 +6,10 @@ import { CartItem } from '../feature/CartItem';
 import { cartSelector, clearItems, removeItem } from '../redux/cartSlice';
 import { CartEmpty } from '../feature/PizzaBlock/CartEmpty';
 
-const Cart = () => {
+const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const { totalPrice, items }: any = useSelector<RootState>(cartSelector);
-  const totalCount = items.reduce((sum: any, item: any) => sum + item.count, 0);
+  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
   const onClickClear = () => {
     dispatch(clearItems());
   };

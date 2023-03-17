@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct, minusItem, removeItem } from '../redux/cartSlice';
 
-type CartItemProps = {
+export type CartItemProps = {
   id: string;
   title: string;
   type: string;

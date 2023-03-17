@@ -17,7 +17,7 @@ import qs from 'qs';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchPizza, pizzaDataSelector } from '../redux/pizzasSlice';
 
-export const Home = () => {
+export const Home: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = useRef(false);

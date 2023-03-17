@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { PizzaBlockPropsType } from '../feature/PizzaBlock/PizzaBlock';
+import { CartItemProps } from '../feature/CartItem';
 
 export interface CartState {
   totalPrice: number;
-  items: any;
+  items: CartItemProps[];
 }
 
 const initialState: CartState = {
@@ -15,7 +17,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addProduct: (state, action: PayloadAction<any>) => {
+    addProduct: (state, action: PayloadAction<CartItemProps>) => {
       const findItem = state.items.find((el: any) => el.id === action.payload.id);
       if (findItem) {
         findItem.count++;
@@ -46,7 +48,7 @@ export const cartSlice = createSlice({
 });
 
 export const cartSelector = (state: any) => state.cart;
-export const cartItemSelector = (id: number) => (state: any) =>
+export const cartItemSelector = (id: string) => (state: any) =>
   state.cart.items.find((el: any) => el.id === id);
 
 // Action creators are generated for each case reducer function
