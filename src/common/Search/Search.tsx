@@ -21,6 +21,7 @@ export const Search: React.FC = () => {
       setSearchValue(str);
       dispatch(setSearchValue(str));
     }, 350),
+
     [],
   );
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {

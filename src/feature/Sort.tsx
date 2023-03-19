@@ -1,20 +1,20 @@
 import React, { LegacyRef, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { setSort, SortType } from '../redux/filterSlice';
+import { setSort, SortItemEnum, SortType } from '../redux/filterSlice';
 
-type SortItem = {
+export type SortItem = {
   name: string;
-  sortProperty: string;
+  sortProperty: SortItemEnum;
 };
 
 type SortPopupProps = {
-  value?: any;
+  value: SortType;
 };
 export const sortList: SortItem[] = [
-  { name: 'popularity ', sortProperty: 'rating' },
-  { name: 'price ', sortProperty: 'price' },
-  { name: 'alphabetical order', sortProperty: 'title' },
+  { name: 'popularity ', sortProperty: SortItemEnum.RATING },
+  { name: 'price ', sortProperty: SortItemEnum.PRICE },
+  { name: 'alphabetical order', sortProperty: SortItemEnum.TITLE },
 ];
 export const Sort: React.FC<SortPopupProps> = ({ value }) => {
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ export const Sort: React.FC<SortPopupProps> = ({ value }) => {
               <li
                 key={index}
                 onClick={() => onClickListItem(obj)}
-                className={value.sortProperty === index ? 'active' : ''}>
+                className={value.sortProperty === obj.sortProperty ? 'active' : ''}>
                 {obj.name}
               </li>
             ))}

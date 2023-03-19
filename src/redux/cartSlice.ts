@@ -1,11 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { PizzaBlockPropsType } from '../feature/PizzaBlock/PizzaBlock';
-import { CartItemProps } from '../feature/CartItem';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from './store';
+
+export type CartItemType = {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  type: string;
+  size: number;
+  count: number;
+};
 
 export interface CartState {
   totalPrice: number;
-  items: CartItemProps[];
+  items: CartItemType[];
 }
 
 const initialState: CartState = {
@@ -17,7 +26,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addProduct: (state, action: PayloadAction<CartItemProps>) => {
+    addProduct: (state, action: PayloadAction<CartItemType>) => {
       const findItem = state.items.find((el: any) => el.id === action.payload.id);
       if (findItem) {
         findItem.count++;
@@ -29,15 +38,14 @@ export const cartSlice = createSlice({
       }
       state.totalPrice = state.items.reduce((sum: any, el: any) => el.price * el.count + sum, 0);
     },
-    minusItem: (state, action: PayloadAction<any>) => {
+    minusItem: (state, action: PayloadAction<string>) => {
       const findItem = state.items.find((el: any) => el.id === action.payload);
       if (findItem) {
         findItem.count--;
         state.totalPrice -= findItem.price;
       }
     },
-    removeItem: (state, action: PayloadAction<any>) => {
-      // @ts-ignore
+    removeItem: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((el) => el.id !== action.payload);
     },
     clearItems: (state) => {
@@ -47,8 +55,8 @@ export const cartSlice = createSlice({
   },
 });
 
-export const cartSelector = (state: any) => state.cart;
-export const cartItemSelector = (id: string) => (state: any) =>
+export const cartSelector = (state: RootState) => state.cart;
+export const cartItemSelector = (id: string) => (state: RootState) =>
   state.cart.items.find((el: any) => el.id === id);
 
 // Action creators are generated for each case reducer function
