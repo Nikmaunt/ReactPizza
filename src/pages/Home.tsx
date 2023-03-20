@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Categories } from '../feature/Categories';
 import { Sort, sortList } from '../feature/Sort';
 import { SkeletonLoader } from '../feature/PizzaBlock/skeletonLoader';
@@ -27,9 +27,9 @@ export const Home: React.FC = () => {
   const { items, status } = useSelector(pizzaDataSelector);
   const { sort, categoryId, currentPage, searchValue } = useSelector(filterSelector);
 
-  const onClickCategory = (id: number) => {
+  const onClickCategory = useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
 
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page));
@@ -85,7 +85,7 @@ export const Home: React.FC = () => {
   //   isMounted.current = true;
   // }, [searchValue, currentPage, sort, categoryId]);
 
-  const pizzas = items.map((el: any) => <PizzaBlock {...el} />);
+  const pizzas = items.map((el: any) => <PizzaBlock key={el.id} {...el} />);
   const skeletons = [...new Array(6)].map((_, index) => <SkeletonLoader key={index} />);
   console.log(pizzas, 'PIZA');
 

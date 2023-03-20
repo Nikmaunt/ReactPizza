@@ -16,7 +16,7 @@ export const sortList: SortItem[] = [
   { name: 'price ', sortProperty: SortItemEnum.PRICE },
   { name: 'alphabetical order', sortProperty: SortItemEnum.TITLE },
 ];
-export const Sort: React.FC<SortPopupProps> = ({ value }) => {
+export const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
   const sortRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState<boolean>(false);
@@ -70,4 +70,4 @@ export const Sort: React.FC<SortPopupProps> = ({ value }) => {
       )}
     </div>
   );
-};
+});
