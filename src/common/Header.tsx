@@ -11,8 +11,11 @@ export const Header = () => {
   const location = useLocation();
   const isMounted = useRef(false);
   useEffect(() => {
-    const json = JSON.stringify(items);
-    localStorage.setItem('cart', json);
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem('cart', json);
+    }
+    isMounted.current = true;
   }, [items]);
 
   return (
