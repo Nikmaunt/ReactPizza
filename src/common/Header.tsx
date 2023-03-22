@@ -3,7 +3,7 @@ import logoSvg from '../assets/img/pizza-logo.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { Search } from './Search/Search';
 import { useSelector } from 'react-redux';
-import { cartSelector } from '../redux/cartSlice';
+import { cartSelector } from '../redux/cart/selectors';
 
 export const Header = () => {
   const { items, totalPrice } = useSelector(cartSelector);

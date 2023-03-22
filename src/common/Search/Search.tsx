@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import searchIcon from '../../assets/img/search_zoom_icon.svg';
 import deleteIcon from '../../assets/img/delete_icon.svg';
 import { useDispatch } from 'react-redux';
-import { setSearchValue } from '../../redux/filterSlice';
+import { setSearchValue } from '../../redux/filter/filterSlice';
 
 export const Search: React.FC = () => {
   const dispatch = useDispatch();

@@ -1,29 +1,15 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from './store';
-import { getCartFromLS } from '../utils/getCartFromLocalstorage';
-import { calcTotalPrice } from '../utils/calcTotalPrice';
+import { RootState } from '../store';
+import { getCartFromLS } from '../../utils/getCartFromLocalstorage';
+import { calcTotalPrice } from '../../utils/calcTotalPrice';
+import { CartItemType, CartState } from './types';
 
-export type CartItemType = {
-  id: string;
-  title: string;
-  price: number;
-  imageUrl: string;
-  type: string;
-  size: number;
-  count: number;
-};
-
-export interface CartState {
-  totalPrice: number;
-  items: CartItemType[];
-}
-
-const cartData = getCartFromLS();
+const { items, totalPrice } = getCartFromLS();
 
 const initialState: CartState = {
-  totalPrice: cartData.totalPrice,
-  items: cartData.items,
+  totalPrice: totalPrice,
+  items: items,
 };
 
 export const cartSlice = createSlice({
@@ -59,11 +45,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const cartSelector = (state: RootState) => state.cart;
-export const cartItemSelector = (id: string) => (state: RootState) =>
-  state.cart.items.find((el: any) => el.id === id);
-
-// Action creators are generated for each case reducer function
 export const { addProduct, removeItem, clearItems, minusItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

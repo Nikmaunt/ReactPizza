@@ -1,22 +1,17 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { Categories } from '../feature/Categories';
-import { Sort, sortList } from '../feature/Sort';
+import { Sort } from '../feature/Sort';
 import { SkeletonLoader } from '../feature/PizzaBlock/skeletonLoader';
-import PizzaBlock, { PizzaBlockType } from '../feature/PizzaBlock/PizzaBlock';
+import PizzaBlock from '../feature/PizzaBlock/PizzaBlock';
 import { Pagination } from '../common/Pagination/Pagination';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../redux/store';
-import {
-  filterSelector,
-  setCategoryId,
-  setCurrentPage,
-  setFilters,
-  sortSelector,
-  SortType,
-} from '../redux/filterSlice';
-import qs from 'qs';
-import { Link, useNavigate } from 'react-router-dom';
-import { fetchPizza, pizzaDataSelector, PizzaState } from '../redux/pizzasSlice';
+import { useAppDispatch } from '../redux/store';
+import { setCategoryId, setCurrentPage } from '../redux/filter/filterSlice';
+import { useNavigate } from 'react-router-dom';
+import { fetchPizza } from '../redux/pizza/pizzasSlice';
+import { filterSelector } from '../redux/filter/selectors';
+import { pizzaDataSelector } from '../redux/pizza/selectors';
+import { SortType } from '../redux/filter/types';
 
 export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
