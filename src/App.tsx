@@ -3,11 +3,13 @@ import './App.css';
 import './scss/app.scss';
 import { Home } from './pages/Home';
 import { Route, Routes } from 'react-router-dom';
-import { FullPizza } from './feature/PizzaBlock/FullPizza';
 import { MainLayout } from './layouts/mainLayout';
 import { NotFound } from './pages/NotFound';
 
-const Cart = React.lazy(() => import('./pages/Cart'));
+const Cart = React.lazy(() => import(/*webpackChunkName:'Cart'*/ './pages/Cart'));
+const FullPizza = React.lazy(
+  () => import(/*webpackChunkName:'FullPizza'*/ './feature/PizzaBlock/FullPizza'),
+);
 
 export const App = () => {
   return (
@@ -23,7 +25,14 @@ export const App = () => {
             </Suspense>
           }
         />
-        <Route path="pizza/:id" element={<FullPizza />} />
+        <Route
+          path="pizza/:id"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <FullPizza />{' '}
+            </Suspense>
+          }
+        />
       </Route>
     </Routes>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export const FullPizza = () => {
@@ -17,9 +17,14 @@ export const FullPizza = () => {
 
   return (
     <div className="container">
-      <h2>{pizza.title}</h2>
       <img src={pizza.imageUrl} alt="" />
+      <h2>{pizza.title}</h2>
       <h4>{pizza.price}</h4>
+      <Link to="/" className="button button--outline button--add go-back-btn">
+        <span>Go back</span>
+      </Link>
     </div>
   );
 };
+
+export default FullPizza;

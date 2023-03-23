@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { Categories } from '../feature/Categories';
-import { Sort } from '../feature/Sort';
-import { SkeletonLoader } from '../feature/PizzaBlock/skeletonLoader';
-import PizzaBlock from '../feature/PizzaBlock/PizzaBlock';
+import { Categories, Sort } from '../feature';
+import { SkeletonLoader, PizzaBlock } from '../feature';
 import { Pagination } from '../common/Pagination/Pagination';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../redux/store';

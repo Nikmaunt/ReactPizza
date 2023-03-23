@@ -1,6 +1,5 @@
-import React, { LegacyRef, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { setSort } from '../redux/filter/filterSlice';
 import { SortItemEnum, SortType } from '../redux/filter/types';
 
