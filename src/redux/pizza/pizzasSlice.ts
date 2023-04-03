@@ -10,7 +10,7 @@ export const fetchPizza = createAsyncThunk<PizzaBlockType[], Record<string, stri
   async (params, thunkAPI) => {
     const { currentPage, category, sortBy, searchValue } = params;
     const { data } = await axios.get<PizzaBlockType[]>(
-      `https://6409e587d16b1f3ed6e069fe.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&search=${searchValue}`,
+      `https://6409e587d16b1f3ed6e069fe.mockapi.io/items?page=${currentPage}&limit=4&category=${category}&sortBy=${sortBy}&search=${searchValue}`,
     );
     thunkAPI.dispatch(setItems(data));
     return data;

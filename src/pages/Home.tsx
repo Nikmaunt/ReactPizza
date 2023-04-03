@@ -80,7 +80,7 @@ export const Home: React.FC = () => {
 
   const pizzas = items.map((el: any) => <PizzaBlock key={el.id} {...el} />);
   const skeletons = [...new Array(6)].map((_, index) => <SkeletonLoader key={index} />);
-  console.log(pizzas, 'PIZA');
+
 
   return (
     <div className="container">

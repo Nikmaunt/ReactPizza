@@ -5,7 +5,7 @@ type CategoriesProps = {
   categoryId: number;
   onChangeCategory: (id: number) => void;
 };
-const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const categories = ['All', 'Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed'];
 export const Categories: React.FC<CategoriesProps> = React.memo(
   ({ categoryId, onChangeCategory }) => {
     useWhyDidYouUpdate('Categories', { categoryId, onChangeCategory });

@@ -46,10 +46,14 @@ export const PizzaBlock: React.FC<PizzaBlockType> = ({
   return (
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
-        <Link key={id} to={`/pizza/${id}`}>
+        {/*<Link key={id} to={`/pizza/${id}`}>*/}
+        {/*  <img className="pizza-block__image" src={imageUrl} alt="Pizza" />*/}
+        {/*  <h4 className="pizza-block__title">{title}</h4>*/}
+        {/*</Link>*/}
+        <span  >
           <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
           <h4 className="pizza-block__title">{title}</h4>
-        </Link>
+        </span>
         <div className="pizza-block__selector">
           <ul>
             {types.map((el) => (
@@ -77,7 +81,7 @@ export const PizzaBlock: React.FC<PizzaBlockType> = ({
           </ul>
         </div>
         <div className="pizza-block__bottom">
-          <div className="pizza-block__price">от {price} ₽</div>
+          <div className="pizza-block__price">{price} $</div>
           <button onClick={onClickAdd} className="button button--outline button--add">
             <svg
               width="12"
@@ -90,7 +94,7 @@ export const PizzaBlock: React.FC<PizzaBlockType> = ({
                 fill="white"
               />
             </svg>
-            <span>Добавить</span>
+            <span >Add</span>
             {addedCount > 0 && <i>{addedCount}</i>}
           </button>
         </div>

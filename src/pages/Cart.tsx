@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { CartItem } from '../feature/CartItem';
-import { clearItems, removeItem } from '../redux/cart/cartSlice';
+import { clearItems } from '../redux/cart/cartSlice';
 import { CartEmpty } from '../feature/PizzaBlock/CartEmpty';
 import { cartSelector } from '../redux/cart/selectors';
 
@@ -98,7 +98,7 @@ const Cart: React.FC = () => {
             </span>
             <span>
               {' '}
-              Order amount: <b>{totalPrice} ₽</b>{' '}
+              Order amount: <b>{totalPrice} $</b>{' '}
             </span>
           </div>
           <div className="cart__bottom-buttons">
@@ -116,10 +116,10 @@ const Cart: React.FC = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"></path>
               </svg>
-              <span>Вернуться назад</span>
+              <span>Go back</span>
             </Link>
             <div className="button pay-btn">
-              <span>Оплатить сейчас</span>
+              <span>Pay now</span>
             </div>
           </div>
         </div>
